@@ -4,7 +4,7 @@ import { interval } from 'rxjs';
 
 let window: BrowserWindow | null = null;
 
-app.on('ready', ()=>{
+app.on('ready', () => {
   createWindow();
   startPing();
 });
@@ -69,7 +69,10 @@ function startPing() {
 
   ping$.subscribe(() => {
     if (window && window.webContents) {
-      window.webContents.send('ping', JSON.stringify(`Ping from main at ${new Date().toISOString()}`));
+      window.webContents.send(
+        'ping',
+        JSON.stringify(`Ping from main at ${new Date().toISOString()}`)
+      );
     }
   });
 }

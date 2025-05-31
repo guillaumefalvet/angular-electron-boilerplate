@@ -14,11 +14,11 @@ export class IpcService {
     window.api.electronIpcSend('open-file');
   }
 
-  public listenToPing(): Observable<string> {
-    return new Observable(observer => {
-      function listener(_event: any, message: string){
+  public listenToPing$(): Observable<string> {
+    return new Observable((observer) => {
+      function listener(_event: any, message: string) {
         observer.next(message);
-      };
+      }
 
       window.api.electronIpcOn('ping', listener);
 

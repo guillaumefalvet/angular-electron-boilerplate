@@ -11,11 +11,11 @@ import { IpcService } from '../../core/ipc.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-
   constructor(private _ipcService: IpcService) {
-    this._ipcService.listenToPing()
+    this._ipcService
+      .listenToPing$()
       .pipe(takeUntilDestroyed())
-      .subscribe(message => {
+      .subscribe((message) => {
         console.log(message);
       });
 
