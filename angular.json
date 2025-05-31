@@ -11,7 +11,7 @@
         }
       },
       "root": "",
-      "sourceRoot": "src/renderer",
+      "sourceRoot": "src/renderer/src",
       "prefix": "app",
       "architect": {
         "build": {
@@ -19,9 +19,7 @@
           "options": {
             "browser": "src/renderer/src/main.ts",
             "index": "src/renderer/src/index.html",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "src/renderer/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -80,10 +78,7 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "src/renderer/tsconfig.spec.json",
             "karmaConfig": "src/renderer/karma.conf.js",
             "inlineStyleLanguage": "scss",
@@ -102,18 +97,13 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/renderer/**/*.ts",
-              "src/renderer/**/*.html"
-            ]
+            "lintFilePatterns": ["src/renderer/**/*.ts", "src/renderer/**/*.html"]
           }
         }
       }
     }
   },
   "cli": {
-    "schematicCollections": [
-      "angular-eslint"
-    ]
+    "schematicCollections": ["angular-eslint"]
   }
 }
