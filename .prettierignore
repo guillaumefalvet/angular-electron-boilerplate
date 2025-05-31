@@ -1,0 +1,9 @@
+*-constant.ts
+constants-*.ts
+
+*.cjs
+*.mjs
+*.js
+*.md
+*.yaml
+*.yml
