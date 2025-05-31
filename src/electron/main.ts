@@ -1,13 +1,23 @@
 import { app, BrowserWindow, dialog, ipcMain, Menu } from 'electron';
 import * as path from 'path';
+import { interval } from 'rxjs';
 
 let window: BrowserWindow | null = null;
 
-app.on('ready', createWindow);
+app.on('ready', ()=>{
+  createWindow();
+  startPing();
+});
 
 app.on('activate', () => {
   if (window === null) {
     createWindow();
+  }
+});
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit();
   }
 });
 
@@ -53,3 +63,13 @@ ipcMain.on('open-file', function (event) {
     return;
   }
 });
+
+function startPing() {
+  const ping$ = interval(1000); // 1-second interval
+
+  ping$.subscribe(() => {
+    if (window && window.webContents) {
+      window.webContents.send('ping', JSON.stringify(`Ping from main at ${new Date().toISOString()}`));
+    }
+  });
+}
