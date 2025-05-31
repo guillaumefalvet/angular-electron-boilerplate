@@ -1,0 +1,15 @@
+{
+  "files": [
+    ".prettierignore",
+    ".prettierrc.js",
+    ".editorconfig",
+    ".gitignore",
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.mjs",
+    "src/**/*.ejs",
+    "src/**/*.html",
+    "src/**/*.scss",
+    "src/**/*.json"
+  ]
+}
