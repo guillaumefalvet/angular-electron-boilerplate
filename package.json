@@ -23,6 +23,7 @@
     "start:renderer": "ng serve",
     "test:lint": "ng lint",
     "test:test": "ng test",
+    "update-template": "update-template https://github.com/guillaumefalvet/angular-electron-boilerplate",
     "update:angular": "ng update @angular/cli @angular/core",
     "update:material": "npm update @angular/material @angular/cdk",
     "update:webpack": "npm update webpack webpack-cli"
