@@ -18,7 +18,7 @@
     "build:watch:renderer": "ng build --watch --configuration development",
     "clean": "npx rimraf dist release-builds node_modules .angular",
     "package": "electron-packager . electron-angular-boilerplate --asar --overwrite --prune=true --derefSymlinks=false --ignore=\"/node_modules|/src|.vscode|.editorconfig|.gitignore|.map|angular.json|tslint.json|README.md|package-lock.json|LICENSE\" --out=release-builds",
-    "release": "npm-run-all -p -r build:all:prod package",
+    "release": "npm-run-all -s -r build:all:prod package",
     "start:app": "electron .",
     "start:renderer": "ng serve",
     "test:lint": "ng lint",
