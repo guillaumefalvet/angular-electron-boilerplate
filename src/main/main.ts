@@ -68,10 +68,11 @@ function startPing() {
   const ping$ = interval(1000); // 1-second interval
 
   ping$.subscribe(() => {
+    const IS_PROD = process.env.NODE_ENV === 'production';
     if (window && window.webContents) {
       window.webContents.send(
         'ping',
-        JSON.stringify(`Ping from main at ${new Date().toISOString()}`)
+        JSON.stringify(`Ping from main at ${new Date().toISOString()} isProd: ${IS_PROD}`)
       );
     }
   });
