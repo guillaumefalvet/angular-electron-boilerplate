@@ -4,8 +4,8 @@
   "private": true,
   "main": "./dist/main/electron-main.js",
   "scripts": {
-    "build:all:dev": "npm-run-all -p -r build:renderer:dev build:preload:dev build:main:dev",
-    "build:all:prod": "npm-run-all -p -r build:renderer:prod build:preload:prod build:main:prod",
+    "build:all:dev": "npm-run-all -s clean build:renderer:dev build:preload:dev build:main:dev",
+    "build:all:prod": "npm-run-all -s clean build:renderer:prod build:preload:prod build:main:prod",
     "build:main:dev": "webpack --config ./src/main/webpack.mjs --mode development",
     "build:main:prod": "webpack --config ./src/main/webpack.mjs --mode production",
     "build:preload:dev": "webpack --config ./src/preload/webpack.mjs --mode development",
@@ -16,9 +16,9 @@
     "build:watch:main": "webpack --watch --config ./src/main/webpack.mjs --mode development",
     "build:watch:preload": "webpack --watch --config ./src/preload/webpack.mjs --mode development",
     "build:watch:renderer": "ng build --watch --configuration development",
-    "clean": "npx rimraf dist release-builds node_modules .angular",
+    "clean": "rimraf dist",
     "package": "electron-packager . electron-angular-boilerplate --asar --overwrite --prune=true --derefSymlinks=false --ignore=\"/node_modules|/src|.vscode|.editorconfig|.gitignore|.map|angular.json|tslint.json|README.md|package-lock.json|LICENSE\" --out=release-builds",
-    "release": "npm-run-all -s -r build:all:prod package",
+    "release": "npm-run-all -s build:all:prod package",
     "start:app": "electron .",
     "start:renderer": "ng serve",
     "test:lint": "ng lint",
@@ -39,6 +39,7 @@
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
     "@electron/packager": "^18.3.6",
+    "app-root-dir": "^1.0.2",
     "electron": "^36.3.2",
     "rxjs": "~7.8.0",
     "webpack": "^5.98.0",
@@ -75,5 +76,16 @@
     "typescript": "~5.8.2",
     "typescript-eslint": "8.32.1",
     "update-template": "^1.3.1"
+  },
+  "build": {
+    "extraFiles": [
+      {
+        "from": "resources/${os}",
+        "to": "Resources/bin",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
   }
 }
